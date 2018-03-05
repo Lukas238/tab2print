@@ -9,7 +9,7 @@ This node.js script download any ukulele-tabs.com tab web page and generates a p
 
 ```$ node tab2json```
 
-**WIP**. The script will download the URL harcoded on variable ```url```on line 10 of tab2json.js file and generte an ```output.html``` file ready for print.
+**WIP**. The script will download the URL harcoded on variable ```url``` on line 10 of tab2json.js file and generte an ```output.html``` file ready for print.
 
 ## Demo output
 
