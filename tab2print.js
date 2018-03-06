@@ -1,9 +1,11 @@
 // var request = require('request');
-var rp = require('request-promise');
-var cheerio = require('cheerio');
-var fs = require('fs');
-var handlebars = require('handlebars');
-eval(fs.readFileSync('./node_modules/guitar-tabs_songtex.js/guitar-tabs_songtex.js')+'');
+const rp = require('request-promise');
+const cheerio = require('cheerio');
+const fs = require('fs');
+const handlebars = require('handlebars');
+const Jimp = require("jimp");
+const util = require('util');
+eval(fs.readFileSync('./node_modules/guitar-tabs_songtex.js/guitar-tabs_songtex.js') + '');
 
 
 // var url = 'http://localhost/ukulele-tabs-2-print/source.html';
@@ -13,11 +15,26 @@ var url = 'https://www.ukulele-tabs.com/uke-songs/mumford-and-sons/the-cave-uke-
 // var url = 'https://www.ukulele-tabs.com/uke-songs/mumford-and-sons/the-cave-super-easy-uke-tab-23983.html';
 
 
+// Handlebars Helpers
+handlebars.registerHelper('math', function (lvalue, operator, rvalue) {
+    lvalue = parseFloat(lvalue);
+    rvalue = parseFloat(rvalue);
+    return {
+        "+": lvalue + rvalue,
+        "-": lvalue - rvalue,
+        "*": lvalue * rvalue,
+        "/": lvalue / rvalue,
+        "%": lvalue % rvalue
+    }[operator];
+});
+
+
+// Functions
 
 function init() {
     rp(url)
         .then(function (raw_html) {
-            save_output(render_template(parse_data(raw_html)));
+            parse_data(raw_html);
         })
         .catch(function (err) {
             console.log('error');
@@ -53,13 +70,15 @@ function parse_data(html) {
             diagrams: [],
             photos: []
         },
-        tab: ''
+        verses: []
     };
     var $ = cheerio.load(html);
 
     [data.title, data.author] = $('#page_title span').map((key, value) => $(value).text()).get();
 
-    data.chords.diagrams = $('#sticky_crd img').map((key, value) => 'https://www.ukulele-tabs.com/uke-songs/' + $(value).attr('src')).get();
+    var diagrams_URLs = $('#sticky_crd img').map((key, value) => 'https://www.ukulele-tabs.com/' + $(value).attr('src').replace('../', '')).get();
+
+    // console.log(data.chords.diagrams);
     data.chords.photos = $('#sticky_crd a').map((key, value) => 'https://www.ukulele-tabs.com' + $(value).attr('href')).get();
 
     //Remove faux title
@@ -70,17 +89,59 @@ function parse_data(html) {
     //     $(item).remove();
     // });
 
-    var raw_textlines = $('<div/>').html($('pre').html().replace(/<br>/mg,"\n")).text().split(/\r\n|\r|\n/g);
-    data.tab = plainTab2tex.parse(raw_textlines).join('<br/>').replace(/\\\[([^\]]+)\]/mg, '<span class="chord"><span>$1</span></span>');
+    var raw_textlines = $('<div/>').html($('pre').html().replace(/<br>/mg, "\n")).text().trim();
+    raw_textlines = raw_textlines.split(/\r\n|\r|\n/g);
 
-    return data;
+    data.verses = plainTab2tex
+        .parse(raw_textlines)
+        .join('<br/>')
+        .replace(/\\\[([^\]]+)\]/gm, '<span class="chord">$1</span>')
+        .replace(/(<br\/?>){2,}/gm, '<br/><br/>')
+        .split(/<br\/><br\/>/);
+
+    // diagrams_URLs.map((diagrams_URLs) => {
+    //     proccess_url(diagrams_URLs).then(function (val) {
+    //         data.chords.diagrams.push(val);
+    //     });
+    // });
+
+    data.chords.diagrams = diagrams_URLs;
+    // var requests = []
+    // for(var i = 0; i < diagrams_URLs.length; i++){
+    //     console.log(diagrams_URLs[i]);
+    //     requests.push(get_image(diagrams_URLs[i]).then(function (res) {
+    //         return res;
+    //     }));
+    // };
+
+    // Promise.all(requests).then((dataAll) => {
+    //     for (var i = 0; i < dataAll.length; i++) {
+    //         console.log(dataAll[i]);
+    //     }
+    //     render_template(data);
+    // });
+    render_template(data);
 }
 
 function render_template(data) {
 
     var source = fs.readFileSync('./tab_page.hbs', 'utf-8');
     var template = handlebars.compile(source);
-    return template(data);
+    save_output(template(data));
+}
+
+function get_image(url) {
+    Jimp.read(url, function (err, img) {
+
+        var output = '';
+        console.log(url);
+        // img
+        //     .greyscale() // set greyscale 
+        //     .getBase64(Jimp.MIME_PNG, function (base64_str) {
+        //         output = base64_str;
+        //     });
+        return output;
+    });
 }
 
 

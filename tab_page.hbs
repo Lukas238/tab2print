@@ -6,8 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Inconsolata" rel="stylesheet">
     <style>
+        :root {
+            --line-height: 2em;
+            --verse-offset: 20px;
+        }
+
         body {
             font-family: 'Open Sans', sans-serif;
         }
@@ -17,9 +22,11 @@
             padding-bottom: .5em;
             margin-bottom: 2em;
         }
-        header h1{
+
+        header h1 {
             margin-bottom: 0;
         }
+
         header h2 {
             margin: 0;
             font-size: 1em;
@@ -27,47 +34,74 @@
 
         #chords img {
             /*filter: invert() contrast(200%) grayscale();*/
+
+            /*-webkit-transform: translateZ(0);*/
+            image-rendering: pixelated;
             box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, .3);
             border-radius: 0.4em;
-            -webkit-transform: translateZ(0);
         }
 
-        #tab {
+        #verses {
             column-count: 2;
-            line-height: 2em;
+            line-height: var(--line-height);
+            font-family: inconsolata, serif;
         }
 
-        #tab .chord {
-            1 position: relative;
+        #verses .verse {
+            padding-top: calc(var(--line-height)*1.5);
+            page-break-inside: avoid;
+            padding-left: var(--verse-offset);
         }
 
-        #tab .chord span {
+        #verses .verse:before {
+            content: attr(data-verse-index) ".";
+            margin-left: calc(var(--verse-offset) * -1);
+            color: #888;
+            font-size: .8em;
+            font-style: italic;
+        }
+
+        #verses .chord {
             position: absolute;
-            transform: translateY(-100%);
-            line-height: 0;
+            margin-top: calc(var(--line-height)/2*-1);
+            font-weight: bold;
         }
 
-       
-
+        @media screen {
+            #wrapper {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <header>
-        <h1>{{title}}</h1>
-        {{#if author}}
-        <h2>{{author}}</h2>
-        {{/if}}
-    </header>
 
-    <div id="chords">
-        {{#each chords.diagrams}}
-        <img src="{{this}}" /> {{/each}}
-    </div>
+    <div id="wrapper">
+        <header>
+            <h1>{{title}}</h1>
+            {{#if author}}
+            <h2>{{author}}</h2>
+            {{/if}}
+        </header>
 
-    <div id="tab">
-        {{{tab}}}
+        <div id="chords">
+            {{#each chords.diagrams}}
+            <img src="{{this}}" />
+            {{/each}}
+        </div>
+
+        <div id="verses">
+            {{#each verses}}
+            <div class="verse" data-verse-index="{{math @index '+' 1}}">
+                {{{this}}}
+            </div>
+            {{/each}}
+        </div>
+
     </div>
+    <!-- /#wrapper -->
 
 </body>
 
