@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Inconsolata" rel="stylesheet">
     <style>
         :root {
-            --line-height: 1.5em;
+            --line-height: 1em;
             --verse-offset: 20px;
         }
 
@@ -39,6 +39,9 @@
             box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, .3);
             border-radius: 0.4em;
         }
+        #chords img + img{
+            margin-left: .5em;
+        }
 
         #verses {
             column-count: 2;
@@ -50,14 +53,6 @@
             padding-top: calc(var(--line-height)*1.5);
             page-break-inside: avoid;
             padding-left: var(--verse-offset);
-        }
-
-        #verses .verse:before {
-            content: attr(data-verse-index) ".";
-            margin-left: calc(var(--verse-offset) * -1);
-            color: #888;
-            font-size: .8em;
-            font-style: italic;
         }
 
         #verses .verse:before {
@@ -98,31 +93,49 @@
                 margin: 0 auto;
             }
         }
+
+        @media print{
+            #editor{
+                display: none;
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <div id="wrapper">
-        <header>
-            <h1>{{title}}</h1>
-            {{#if author}}
-            <h2>{{author}}</h2>
-            {{/if}}
-        </header>
 
-        <div id="chords">
-            {{#each chords.diagrams}}
-            <img src="{{this}}" /> {{/each}}
+        <div id="editor">
+            <textarea id="raw_data" cols="30" rows="10" v-model="editor_html" @change="parse_rawHTML"></textarea>
+            <textarea id="edit_area" cols="30" rows="10" v-model="editor_data" @change="parse_data"></textarea>
         </div>
 
-        <pre id="verses">
-          {{#each verses}} <div class="verse" data-verse-index="{{math @index '+' 1}}">{{{this}}}</div>{{/each}}
-        </pre>
+
+        <div id="preview">
+
+            <header>
+                <h1>{{tab.title}}</h1>
+                <h2 v-if="tab.author">{{ tab.author }}</h2>
+            </header>
+
+            <div id="chords">
+                <img :src="chord" v-for="chord in tab.chords.diagrams"/>
+            </div>
+
+            <pre id="verses"><div class="verse" :data-verse-index="index+1" v-html="verse" v-for="(verse, index) in tab.verses"></div></pre>
+
+        </div>
+        <!-- /#preview -->
 
     </div>
     <!-- /#wrapper -->
 
+
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.15/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="scripts.js"></script>
 </body>
 
 </html>
