@@ -9,10 +9,15 @@ eval(fs.readFileSync('./node_modules/guitar-tabs_songtex.js/guitar-tabs_songtex.
 
 
 // var url = 'http://localhost/ukulele-tabs-2-print/source.html';
-var url = 'https://www.ukulele-tabs.com/uke-songs/mumford-and-sons/the-cave-uke-tab-17047.html';
-// var url = 'https://www.ukulele-tabs.com/uke-songs/thin-lizzy/whiskey-in-the-jar-uke-tab-12187.html';
+// var url = 'https://www.ukulele-tabs.com/uke-songs/mumford-and-sons/the-cave-uke-tab-17047.html';
+// var url = 'https://www.ukulele-tabs.com/uke-songs/queen/bohemian-rhapsody-uke-tab-54709.html';
+var url = 'https://www.ukulele-tabs.com/uke-songs/israel-kamakawiwoole/somewhere-over-the-rainbowwhat-a-wonderful-world-uke-tab-12260.html';
+// var url = 'https://www.ukulele-tabs.com/es/tablaturas/thin-lizzy/whiskey-in-the-jar-uke-tab-12187.html';
+// var url = 'https://www.ukulele-tabs.com/es/tablaturas/jorge-drexler/sea-uke-tab-37544.html';
 // var url = 'https://www.ukulele-tabs.com/es/tablaturas/folk-songs/you-are-my-sunshine-uke-tab-15237.html';
 // var url = 'https://www.ukulele-tabs.com/uke-songs/mumford-and-sons/the-cave-super-easy-uke-tab-23983.html';
+url = "hhttps://www.ukulele-tabs.com/uke-songs/sting/i-hung-my-head-uke-tab-4506.html";
+url = "https://www.ukulele-tabs.com/uke-songs/sting/message-in-the-bottle-uke-tab-34870.html";
 
 
 // Handlebars Helpers
@@ -92,12 +97,23 @@ function parse_data(html) {
     var raw_textlines = $('<div/>').html($('pre').html().replace(/<br>/mg, "\n")).text().trim();
     raw_textlines = raw_textlines.split(/\r\n|\r|\n/g);
 
-    data.verses = plainTab2tex
-        .parse(raw_textlines)
+    // data.verses = plainTab2tex
+    //     .parse(raw_textlines)
+    //     .join('<br/>')
+    //     .replace(/\\\[([^\]]+)\]/gm, '</span><span class="chord"><span>$1</span></span><span>')
+    //     .replace(/(<br\/?>){2,}/gm, '<br/><br/>')
+    //     .split(/<br\/><br\/>/);
+    data.verses = raw_textlines
         .join('<br/>')
-        .replace(/\\\[([^\]]+)\]/gm, '<span class="chord">$1</span>')
+        .replace(/\\\[([^\]]+)\]/gm, '</span><span class="chord"><span>$1</span></span><span>')
         .replace(/(<br\/?>){2,}/gm, '<br/><br/>')
         .split(/<br\/><br\/>/);
+
+
+    data.verses = data.verses.map(function (val) {
+        var re = /<span><\/span>|<span>$|^<\/span>/gm;
+        return val.replace(re, '');
+    });
 
     // diagrams_URLs.map((diagrams_URLs) => {
     //     proccess_url(diagrams_URLs).then(function (val) {

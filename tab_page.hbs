@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Inconsolata" rel="stylesheet">
     <style>
         :root {
-            --line-height: 2em;
+            --line-height: 1.5em;
             --verse-offset: 20px;
         }
 
@@ -34,7 +34,6 @@
 
         #chords img {
             /*filter: invert() contrast(200%) grayscale();*/
-
             /*-webkit-transform: translateZ(0);*/
             image-rendering: pixelated;
             box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, .3);
@@ -61,10 +60,36 @@
             font-style: italic;
         }
 
+        #verses .verse:before {
+            content: attr(data-verse-index) ".";
+            margin-left: calc(var(--verse-offset) * -1);
+            color: #888;
+            font-size: .8em;
+            font-style: italic;
+        }
+
         #verses .chord {
-            position: absolute;
-            margin-top: calc(var(--line-height)/2*-1);
             font-weight: bold;
+            display: inline-block;
+            width: 0;
+        }
+
+        #verses .chord span {
+            float: left;
+            line-height: 1em;
+            margin-top: -2em;
+        }
+
+        .chord+.chord span {
+            transform: translateX(100%);
+        }
+
+        .chord+.chord+.chord span {
+            transform: translateX(200%);
+        }
+
+        .chord+.chord+.chord+.chord span {
+            transform: translateX(300%);
         }
 
         @media screen {
@@ -88,17 +113,12 @@
 
         <div id="chords">
             {{#each chords.diagrams}}
-            <img src="{{this}}" />
-            {{/each}}
+            <img src="{{this}}" /> {{/each}}
         </div>
 
-        <div id="verses">
-            {{#each verses}}
-            <div class="verse" data-verse-index="{{math @index '+' 1}}">
-                {{{this}}}
-            </div>
-            {{/each}}
-        </div>
+        <pre id="verses">
+          {{#each verses}} <div class="verse" data-verse-index="{{math @index '+' 1}}">{{{this}}}</div>{{/each}}
+        </pre>
 
     </div>
     <!-- /#wrapper -->
