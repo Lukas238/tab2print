@@ -11,13 +11,13 @@ eval(fs.readFileSync('./node_modules/guitar-tabs_songtex.js/guitar-tabs_songtex.
 // var url = 'http://localhost/ukulele-tabs-2-print/source.html';
 // var url = 'https://www.ukulele-tabs.com/uke-songs/mumford-and-sons/the-cave-uke-tab-17047.html';
 // var url = 'https://www.ukulele-tabs.com/uke-songs/queen/bohemian-rhapsody-uke-tab-54709.html';
-var url = 'https://www.ukulele-tabs.com/uke-songs/israel-kamakawiwoole/somewhere-over-the-rainbowwhat-a-wonderful-world-uke-tab-12260.html';
+// var url = 'https://www.ukulele-tabs.com/uke-songs/israel-kamakawiwoole/somewhere-over-the-rainbowwhat-a-wonderful-world-uke-tab-12260.html';
 // var url = 'https://www.ukulele-tabs.com/es/tablaturas/thin-lizzy/whiskey-in-the-jar-uke-tab-12187.html';
 // var url = 'https://www.ukulele-tabs.com/es/tablaturas/jorge-drexler/sea-uke-tab-37544.html';
 // var url = 'https://www.ukulele-tabs.com/es/tablaturas/folk-songs/you-are-my-sunshine-uke-tab-15237.html';
 // var url = 'https://www.ukulele-tabs.com/uke-songs/mumford-and-sons/the-cave-super-easy-uke-tab-23983.html';
-url = "hhttps://www.ukulele-tabs.com/uke-songs/sting/i-hung-my-head-uke-tab-4506.html";
-url = "https://www.ukulele-tabs.com/uke-songs/sting/message-in-the-bottle-uke-tab-34870.html";
+// url = "hhttps://www.ukulele-tabs.com/uke-songs/sting/i-hung-my-head-uke-tab-4506.html";
+url = "https://www.ukulele-tabs.com/uke-songs/magdalena-fleitas/la-luna-de-candela-uke-tab-58328.html";
 
 
 // Handlebars Helpers

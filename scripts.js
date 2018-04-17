@@ -10,18 +10,25 @@
                   diagrams: [],
                   photos: []
               },
-              verses: []
+              verses: [],
+              verses_text: ''
           }
       },
       methods: {
           parse_rawHTML: function () {
               var result = parse_rawData(this.editor_html);
               this.tab = result;
-              parse_data();
+              this.tab.verses_text =  result.verses;
           },
           parse_data: function () {
-
+            this.tab.verses = this.tab.verses_text.replace('<br/>', '\n').split('\n\n');
           }
+      },
+      watch: {
+        tab: function(){
+            document.title = this.tab.title + (this.tab.author ? '_'+this.tab.author : '');
+        }
+
       }
   });
 
@@ -54,8 +61,8 @@
       data.verses = raw_textlines
           .join('<br/>')
           .replace(/\\\[([^\]]+)\]/gm, '</span><span class="chord"><span>$1</span></span><span>')
-          .replace(/(<br\/?>){2,}/gm, '<br/><br/>')
-          .split(/<br\/><br\/>/);
+          .replace(/(<br\/?>){2,}/gm, '\n\n')
+          .split(/\n\n/);
 
       data.verses = data.verses.map(function (val) {
           var re = /<span><\/span>|<span>$|^<\/span>/gm;
