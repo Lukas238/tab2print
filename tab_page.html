@@ -5,99 +5,149 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{tab.title}}_{{ tab.author }}</title>
+    <title>Tab2Print</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Inconsolata" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
     <style>
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
         :root {
             --line-height: 1em;
-            --verse-offset: 20px;
+            --verse-offset: 1em;
+            --columns-gap: 2em;
         }
-
         body {
             font-family: 'Open Sans', sans-serif;
         }
 
-        header {
+        /* EDITOR */
+        #editor {
+            width: 40%;
+            float: left;
+            height: 100vh;
+        }
+        #editor #tab-meta {
+            border: none;
+            margin: 0;
+            height: 90px;
+        }
+        #editor #tab-meta .form-group label{
+            width: 60px;
+            display: inline-block;
+        }
+        #editor #tab-meta .form-group input{
+            width: calc( 100% - 65px);
+        }
+        #editor #edit_area {
+            width: 100%;
+            height: calc(100% - 95px);
+            white-space: pre;
+            overflow: auto;
+            font-family: monospace;
+        }
+
+        /* PREVIEW */
+        #preview {
+            width: 60%;
+            float: right;
+            height: 100vh;
+            padding: 1rem;
+        }
+        #preview header {
             border-bottom: 1px solid;
             padding-bottom: .5em;
-            margin-bottom: 2em;
         }
-
-        header h1 {
-            margin-bottom: 0;
-        }
-
-        header h2 {
+        #preview .title {
             margin: 0;
+        }
+        #preview .author {
+            margin: .3em 0 0 0;
             font-size: 1em;
         }
 
+        /* CHORDS */
         #chords img {
-            /*filter: invert() contrast(200%) grayscale();*/
-            /*-webkit-transform: translateZ(0);*/
             image-rendering: pixelated;
             box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, .3);
             border-radius: 0.4em;
         }
-        #chords img + img{
+
+        #chords img+img {
             margin-left: .5em;
         }
 
+        /* VERSES */
+
         #verses {
-            column-count: 2;
+            margin-top: 2em;
             line-height: var(--line-height);
-            font-family: inconsolata, serif;
-            white-space: pre-wrap;
+            -moz-column-count: 2;
+            -webkit-column-count: 2;
+            column-count: 2;
+            -moz-column-gap: var(--columns-gap);
+            -webkit-column-gap: var(--columns-gap);
+            column-gap: var(--columns-gap);
         }
 
         #verses .verse {
-            padding-top: calc(var(--line-height)*1.5);
+            font-family: inconsolata, serif;
             page-break-inside: avoid;
             padding-left: var(--verse-offset);
+            display: inline-block;
+            position: relative;
         }
 
         #verses .verse:before {
+            position: absolute;
             content: attr(data-verse-index) ".";
-            margin-left: calc(var(--verse-offset) * -1);
+            top: 0;
+            left: 0;
             color: #888;
             font-size: .8em;
             font-style: italic;
         }
 
-        #verses .chord {
-            font-weight: bold;
-            display: inline-block;
-            width: 0;
-        }
-
-        #verses .chord span {
-            float: left;
-            line-height: 1em;
-            margin-top: -2em;
-        }
-
-        .chord+.chord span {
-            transform: translateX(100%);
-        }
-
-        .chord+.chord+.chord span {
-            transform: translateX(200%);
-        }
-
-        .chord+.chord+.chord+.chord span {
-            transform: translateX(300%);
-        }
-
-        @media screen {
-            #wrapper {
-                max-width: 800px;
-                margin: 0 auto;
+            {
+            # #verses .chord {
+                font-weight: bold;
+                display: inline-block;
+                width: 0;
             }
+
+            #verses .chord span {
+                float: left;
+                line-height: 1em;
+                margin-top: -2em;
+            }
+
+            .chord+.chord span {
+                transform: translateX(100%);
+            }
+
+            .chord+.chord+.chord span {
+                transform: translateX(200%);
+            }
+
+            .chord+.chord+.chord+.chord span {
+                transform: translateX(300%);
+            }
+            #
         }
 
-        @media print{
-            #editor{
+
+
+        @media print {
+            #editor {
                 display: none;
+            }
+            #preview {
+                width: 100%;
+                float: right;
+                height: 100vh;
+                padding: 1rem;
             }
         }
     </style>
@@ -108,23 +158,37 @@
     <div id="wrapper">
 
         <div id="editor">
-            <textarea id="raw_data" cols="30" rows="10" v-model="editor_html" @change="parse_rawHTML"></textarea>
-            <textarea id="edit_area" cols="30" rows="10" v-model="tab.verses_text" @change="parse_data"></textarea>
+            <fieldset id="tab-meta">
+                <div class="form-group">
+                    <label for="frm_title">Title</label>
+                    <input id="frm_title" type="text" v-model="title">
+                </div>
+                <div class="form-group">
+                        <label for="frm_album">Album</label>
+                        <input id="frm_album" type="text" v-model="album">
+                    </div>
+                <div class="form-group">
+                    <label for="frm_author">Author</label>
+                    <input id="frm_author" type="text" v-model="author">
+                </div>
+            </fieldset>
+            <textarea id="edit_area" cols="30" rows="10" v-model="source_tab" placeholder="Copy and paste the tab text here"></textarea>
         </div>
 
 
         <div id="preview">
-
-            <header>
-                <h1>{{tab.title}}</h1>
-                <h2 v-if="tab.author">{{ tab.author }}</h2>
+            <header v-if="title || author">
+                <h1 class="title">{{title}}</h1>
+                <h2 class="author" v-if="author || album">{{ author }}<span v-if="author && album"> - </span>{{ album }}</h2>
             </header>
 
             <div id="chords">
-                <img :src="chord" v-for="chord in tab.chords.diagrams"/>
+                <img :src="chord" v-for="chord in chords.diagrams" />
             </div>
 
-            <pre id="verses"><div class="verse" :data-verse-index="index+1" v-html="verse" v-for="(verse, index) in tab.verses"></div></pre>
+            <div id="verses">
+                <pre class="verse" :data-verse-index="index+1" v-html="verse" v-for="(verse, index) in verses"></pre>
+            </div>
 
         </div>
         <!-- /#preview -->
@@ -135,7 +199,6 @@
 
     <!-- SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.15/vue.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="scripts.js"></script>
 </body>
 
