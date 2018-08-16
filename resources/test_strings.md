@@ -5,25 +5,34 @@ Em             Am       D          Em
 The angel Gabriel from heaven came;
         Em            C         Am       D7 
 His wings as drifted snow, his eyes as flame,
-       Em                      C          Am  D7 
+       Em                      C          Am  D7
 ''All hail'' said he, ''thou lowly maiden Ma--ry,
        C             D7    Em   Am    D7 
 Most highly favored lady, Glo--oooo--ria!''
 Em     D7    Em 
 (Glo--oooo--ria!)
 
+Em             Am       D          Em 
 ''For known a blessed mother thou shalt be,
+        Em            C         Am       D7 
 All generations laud and honor thee,
+       Em                      C          Am  D7
 Thy Son shall be Emmanuel, by seers foretold,
+        C             D7    Em   Am    D7 
 Most highly favored lady.'' Gloria!
+Em     D7    Em 
 (Gloria!)
 
+Em             Am       D          Em 
 Then gentle Mary meekly bowed her head, 
+        Em            C         Am       D7 
 ''To me be as it pleaseth God,'' she said, 
+       Em                      C          Am  D7
 ''My soul shall laud and magnify his holy name,'' 
+       C             D7    Em   Am    D7 
 Most highly favoured lady, Gloria! 
+Em     D7    Em 
 (Gloria!)
-            
 ```
 
 
