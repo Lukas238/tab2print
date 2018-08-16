@@ -15,7 +15,7 @@
             box-sizing: border-box;
         }
         :root {
-            --line-height: 2em;
+            --line-height: 2.5em;
             --verse-offset: 1em;
             --columns-gap: 2em;
             --meta-height: 120px;
@@ -99,7 +99,7 @@
             display: inline-block;
             position: relative;
             line-height: var(--line-height);
-            margin-top: 2em;
+            margin-top: 2.5em;
             
         }
         #verses .verse:before {
@@ -114,12 +114,14 @@
         
         #verses .chord {
             position: absolute;
+            font-style: italic;
+            color: #666;
+            font-size: .8em;
         }
 
         #verses .chord span {
             position: absolute;
             top: -1em;
-            transform: translateX(-50%);
         }
 
 

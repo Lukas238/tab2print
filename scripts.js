@@ -13,8 +13,8 @@
               document.title = titles_items.length ? titles_items.join(' - ') : 'Tab2Print';
           },
           verses: function () {
-            //   return clean_input(this.source_tab).split('\n\n');
-            var output = plainTab2tex.parse(this.source_tab.split(/\r\n|\r|\n/g)).join('</br>').split('</br></br>');
+;
+            var output = plainTab2tex.parse(clean_input(this.source_tab).split(/\r\n|\r|\n/g)).join('</br>').split('</br></br>');
               return console.log(output) || output;
           },
           chords: function(){
