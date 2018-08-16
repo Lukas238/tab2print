@@ -15,7 +15,7 @@
             box-sizing: border-box;
         }
         :root {
-            --line-height: 1em;
+            --line-height: 2em;
             --verse-offset: 1em;
             --columns-gap: 2em;
             --meta-height: 120px;
@@ -84,13 +84,13 @@
         /* VERSES */
         #verses {
             margin-top: 2em;
-            line-height: var(--line-height);
             -moz-column-count: 2;
             -webkit-column-count: 2;
             column-count: 2;
             -moz-column-gap: var(--columns-gap);
             -webkit-column-gap: var(--columns-gap);
             column-gap: var(--columns-gap);
+            line-height: 1.5em;
         }
         #verses .verse {
             font-family: "Ubuntu Mono", serif;
@@ -98,6 +98,9 @@
             padding-left: var(--verse-offset);
             display: inline-block;
             position: relative;
+            line-height: var(--line-height);
+            margin-top: 2em;
+            
         }
         #verses .verse:before {
             position: absolute;
@@ -109,29 +112,15 @@
             font-style: italic;
         }
         
-        /* #verses .chord {
-            font-weight: bold;
-            display: inline-block;
-            width: 0;
+        #verses .chord {
+            position: absolute;
         }
 
         #verses .chord span {
-            float: left;
-            line-height: 1em;
-            margin-top: -2em;
+            position: absolute;
+            top: -1em;
+            transform: translateX(-50%);
         }
-
-        .chord+.chord span {
-            transform: translateX(100%);
-        }
-
-        .chord+.chord+.chord span {
-            transform: translateX(200%);
-        }
-
-        .chord+.chord+.chord+.chord span {
-            transform: translateX(300%);
-        } */
 
 
 
@@ -193,7 +182,7 @@
             </div>
 
             <div id="verses" v-if="verses.length > 1">
-                <pre class="verse" :data-verse-index="index+1" v-html="verse" v-for="(verse, index) in verses"></pre>
+                <div class="verse" :data-verse-index="index+1" v-html="verse" v-for="(verse, index) in verses"></div>
             </div>
 
         </div>
@@ -205,6 +194,7 @@
 
     <!-- SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.15/vue.min.js"></script>
+    <script src="guitar-tabs_songtex.js"></script>
     <script src="scripts.js"></script>
 </body>
 

@@ -13,7 +13,9 @@
               document.title = titles_items.length ? titles_items.join(' - ') : 'Tab2Print';
           },
           verses: function () {
-              return clean_input(this.source_tab).split('\n\n');
+            //   return clean_input(this.source_tab).split('\n\n');
+            var output = plainTab2tex.parse(this.source_tab.split(/\r\n|\r|\n/g)).join('</br>').split('</br></br>');
+              return console.log(output) || output;
           },
           chords: function(){
             return get_chords(this.source_tab);
@@ -56,42 +58,15 @@
       return str;
   }
 
-  //   function parse_rawData(html) {
-  //       var data = {
-  //           title: '',
-  //           author: '',
-  //           chords: {
-  //               diagrams: [],
-  //               photos: []
-  //           },
-  //           verses: []
-  //       };
-
-  //       html = $("<div/>").html(html);
-
-  //       [data.title, data.author] = $(html).find('#page_title span').map((key, value) => $(value).text()).get();
-  //       console.log(data);
-
-  //       data.chords.diagrams = $(html).find('#sticky_crd img').map((key, value) => 'https://www.ukulele-tabs.com/' + $(value).attr('src').replace('../', '')).get();
-
-  //       console.log(data.chords.diagrams);
-  //       data.chords.photos = $(html).find('#sticky_crd a').map((key, value) => 'https://www.ukulele-tabs.com' + $(value).attr('href')).get();
-
-
-  //       var raw_textlines = $('<div/>').html($(html).find('pre').html().replace(/<br>/mg, "\n")).text().trim();
-  //       raw_textlines = raw_textlines.split(/\r\n|\r|\n/g);
-
-  //       data.verses = raw_textlines
-  //           .join('<br/>')
-  //           .replace(/\\\[([^\]]+)\]/gm, '</span><span class="chord"><span>$1</span></span><span>')
-  //           .replace(/(<br\/?>){2,}/gm, '\n\n')
-  //           .split(/\n\n/);
-
-  //       data.verses = data.verses.map(function (val) {
-  //           var re = /<span><\/span>|<span>$|^<\/span>/gm;
-  //           return val.replace(re, '');
-  //       });
-
-
-  //       return data;
-  //   }
+  plainTab2tex.insert_tabs_in_line = function(cur_line, cur_tabs) {
+    var j = cur_tabs.length,// index amoung the cur_tabs
+        l = cur_line.length;
+    while (j > 0) {
+        j -= 1;
+        if (cur_tabs[j] !== undefined) {
+            l = Math.min(j, l);//if the tabs are after the end of the text line, we insert them at the end
+            cur_line = cur_line.substr(0, l) + "[" + cur_tabs[j] + "]" + cur_line.substr(l);
+        }
+    }
+    return cur_line;
+}
