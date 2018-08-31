@@ -36,6 +36,64 @@ Em     D7    Em
 ```
 
 
+```
+
+Gm7 Dm7 Eb Cm7 Eb F Cm7
+Intro sa sa das das das das
+
+
+Gm7                       Dm7          
+The angel Gabriel from heaven came
+      Eb                                F
+His wings as drifted snow, his eyes as flame,
+       Cm7                          Eb  F
+All hail said he, thou lowly maiden Ma--ry
+       Eb                
+Most highly favored lady
+
+
+Eb    Cm7   Bb
+Glo--oooo--ria
+Am7   Eb    
+Glo--oooo
+
+
+     Gm7                        Dm7
+For known a blessed mother thou shalt be
+      Eb                         F
+All generations laud and honor thee
+     Cm7                      Eb        F
+Thy Son shall be Emmanuel, by seers foretold
+      Eb                  
+Most highly favored lady.
+
+
+Eb    Cm7   Bb
+Glo--oooo--ria
+Am7   Eb    
+Glo--oooo
+
+
+Dm7 Eb Cm7 Eb F Cm7
+Solo
+
+
+Gm7                           Dm7 
+Then gentle Mary meekly bowed her head 
+   Eb                             F
+To me be as it pleaseth God, she said
+    Cm7                            Eb   F
+My soul shall laud and magnify his holy name
+       Eb 
+Most highly favored lady
+
+
+Eb    Cm7   Bb
+Glo--oooo--ria
+Am7   Eb    
+Glo--oooo
+```
+
 ## Test chrods list
 ```
 C C7 Cm Cm7 Cdim Caug C6 Cmaj7 C9
