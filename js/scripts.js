@@ -13,6 +13,9 @@
               document.title = titles_items.length ? titles_items.join(' - ') : 'Tab2Print';
           },
           verses: function () {
+
+            if(!this.source_tab.trim().length ){ return '';}
+            
               var output = plainTab2tex.parse(clean_input(this.source_tab).split(/\r\n|\r|\n/g)).join('</br>').split('</br></br>');
               return console.log(output) || output;
           },
