@@ -52,7 +52,7 @@
                 </header>
                 
                 <div id="chords" v-if="chords_visible">
-                    <img :src="'http://ukulelego.com/ukulele-chord-progressions/images/' + chord + '.svg'" v-for="chord in chords" />
+                    <img :src="'images/chords/' + chord + '.svg'" :alt="chord" v-for="chord in chords" />
                 </div>
                 
                 <div id="verses" v-if="verses.length >= 1">
