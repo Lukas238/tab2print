@@ -30,9 +30,10 @@ body {
     width: 60px;
     display: inline-block;
 }
-#editor .form-group input{
+#editor .form-group input[type="text"]{
     width: calc( 100% - 120px);
 }
+
 #editor #edit_area {
     width: 100%;
     height: calc(100% - var(--meta-height) - 5px);
