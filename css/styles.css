@@ -1,0 +1,142 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+:root {
+    --line-height: 2em;
+    --verse-offset: 1em;
+    --columns-gap: 2em;
+    --meta-height: 120px;
+}
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* EDITOR */
+#editor {
+    width: 40%;
+    float: left;
+    height: 100vh;
+}
+#editor #meta{
+    height: var(--meta-height);
+}
+#editor fieldset {
+    border: none;
+    margin: 0;
+}
+#editor #tab-meta .form-group label{
+    width: 60px;
+    display: inline-block;
+}
+#editor .form-group input{
+    width: calc( 100% - 120px);
+}
+#editor #edit_area {
+    width: 100%;
+    height: calc(100% - var(--meta-height) - 5px);
+    white-space: pre;
+    overflow: auto;
+    font-family: monospace;
+}
+
+/* PREVIEW */
+#preview {
+    width: 60%;
+    float: right;
+    height: 100vh;
+    padding: 1rem;
+    
+}
+@media screen{
+    /* A4 sheet preview */
+    #preview #paper{
+        width: 21cm;
+        min-height: 29.7cm;
+        padding: 2cm;
+        margin: 0 auto 1em auto;
+        box-shadow: 0 0 3px rgba(0,0,0, .4);
+    }
+}
+#preview header {
+    border-bottom: 1px solid;
+    padding-bottom: .5em;
+}
+#preview .title {
+    margin: 0;
+}
+#preview .author {
+    margin: .3em 0 0 0;
+    font-size: 1em;
+}
+
+/* CHORDS */
+#chords img {
+    margin-top: 2em;
+    height: 120px;
+    vertical-align: top;
+}
+#chords img+img {
+    margin-left: .5em;
+}
+
+/* VERSES */
+#verses {
+    margin-top: 1em;
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    column-count: 2;
+    -moz-column-gap: var(--columns-gap);
+    -webkit-column-gap: var(--columns-gap);
+    column-gap: var(--columns-gap);
+    line-height: 1.5em;
+}
+#verses .verse {
+    font-family: "Ubuntu Mono", serif;
+    page-break-inside: avoid;
+    padding-left: var(--verse-offset);
+    display: inline-block;
+    position: relative;
+    line-height: var(--line-height);
+    margin-top: 1.5em;
+    text-align: left;
+    /* text-align-last: right;   */
+}
+#verses .verse:before {
+    position: absolute;
+    content: attr(data-verse-index) ".";
+    top: 0;
+    left: 0;
+    color: #888;
+    font-size: .8em;
+    font-style: italic;
+}
+
+#verses .chord {
+    position: absolute;
+    font-style: italic;
+    color: #666;
+    font-size: .8em;
+    display: inline;
+}
+
+#verses .chord span {
+    position: absolute;
+    top: -1em;
+}
+
+
+
+
+@media print {
+    #editor {
+        display: none;
+    }
+    #preview {
+        width: 100%;
+        float: right;
+        height: 100vh;
+        padding: 1rem;
+    }
+}

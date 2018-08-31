@@ -13,8 +13,7 @@
               document.title = titles_items.length ? titles_items.join(' - ') : 'Tab2Print';
           },
           verses: function () {
-;
-            var output = plainTab2tex.parse(clean_input(this.source_tab).split(/\r\n|\r|\n/g)).join('</br>').split('</br></br>');
+              var output = plainTab2tex.parse(clean_input(this.source_tab).split(/\r\n|\r|\n/g)).join('</br>').split('</br></br>');
               return console.log(output) || output;
           },
           chords: function(){
@@ -38,7 +37,7 @@
     Source: https://github.com/oliverpool/guitar-tabs_songtex.js/blob/master/guitar-tabs_songtex.js
  */
   function extract_tabs(line) {
-      var reg = /^ *[A-Ga-g](#|b|&)?m?(sus|add|maj|aug|dim)?[0-9]?( *(-|\/) *[A-G](#|b)?)?( +[A-Ga-g](#|b|&)?m?(sus|add|maj|aug|dim)?[0-9]?( *(-|\/) *[A-G](#|b|&)?)? *)* *$/,
+      var reg = /^ *[A-Ga-g](#|b|&)?m?(sus|add|maj|aug|dim)?[0-9]?( *(-|\/) *[A-G](#|b|&)?)?( +[A-Ga-g](#|b|&)?m?(sus|add|maj|aug|dim)?[0-9]?( *(-|\/) *[A-G](#|b|&)?)? *)* *$/,
           reguniq = /[A-Ga-g](#|b|&)?m?(sus|add|maj|aug|dim)?[0-9]?( *(-|\/) *[A-G](#|b|&)?)? *$/,
           i,
           tab;
@@ -46,7 +45,7 @@
       if (line.match(reg)) {
           i = line.search(reguniq);
           tab = extract_tabs(line.substr(0, i - 1));
-          tab[i] = line.substr(i).trim().replace('b', '&').toLowerCase();
+          tab[i] = line.substr(i).trim().toLowerCase();
           return tab;
       }
       return [];
