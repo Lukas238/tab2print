@@ -38,7 +38,7 @@ var vm = new Vue({
                 var type = $(item).attr('data-type');
 
                 var root = $(item).attr('data-root');
-                $.get('http://www.ukulele-chords.com/get?ak='+API+'&r='+root+'&typ='+type, function(data){
+                $.get('https://www.ukulele-chords.com/get?ak='+API+'&r='+root+'&typ='+type, function(data){
                     // $(item).attr('src', 'data.')
 
                     var src = data.match("/<chord_diag>(.+)<\/chord_diag>/")[1];
