@@ -1,4 +1,6 @@
-var API = "86a9106ae65537651a8e456835b316ab";
+// var API = "86a9106ae65537651a8e456835b316ab"; // localhost
+var API = "448c94b888630081dd55bfa9fe3b797f";
+
 
 var vm = new Vue({
       el: '#wrapper',
