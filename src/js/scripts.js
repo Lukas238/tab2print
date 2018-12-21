@@ -1,4 +1,6 @@
-  var vm = new Vue({
+var API = "86a9106ae65537651a8e456835b316ab";
+
+var vm = new Vue({
       el: '#wrapper',
       data: {
           source_tab: '',
@@ -17,11 +19,31 @@
             if(!this.source_tab.trim().length ){ return '';}
             
               var output = plainTab2tex.parse(clean_input(this.source_tab).split(/\r\n|\r|\n/g)).join('</br>').split('</br></br>');
-              return console.log(output) || output;
+            //   return console.log(output) || output;
+              return  output;
           },
           chords: function(){
             return get_chords(this.source_tab);
           }
+      },
+      watch: {
+        chords: function(){
+            if( !this.chords_visible){ return; }
+            
+        // document.getElementsByTagName('body').getElementById("#chords").getElementsByTagName("img")
+            $('body').find('#chords img[src=""]').each(function(key, item){
+                var root = $(item).attr('data-root');
+                var type = $(item).attr('data-type');
+
+                var root = $(item).attr('data-root');
+                $.get('http://www.ukulele-chords.com/get?ak='+API+'&r='+root+'&typ='+type, function(data){
+                    // $(item).attr('src', 'data.')
+
+                    var src = data.match("/<chord_diag>(.+)<\/chord_diag>/")[1];
+                    console.log(src);
+                })
+            })
+        }
       }
   });
 
@@ -33,6 +55,10 @@
     });
     chords = [... new Set(chords)];
     chords = chords.filter(Boolean);
+
+    // Split the chord in Root Chord note and Chord Type (ex.: Dm7 = [D, m7]), 
+    chords = chords.map( chord => [chord.substring(0,1), chord.substring(1)] );
+
     return chords;
   }
 
