@@ -13,7 +13,7 @@ var vm = new Vue({
       },
       computed: {
           print_title: function () {
-              var titles_items = [this.tab.author, this.tab.album, this.tab.title].filter(Boolean);
+              var titles_items = [this.author, this.album, this.title].filter(Boolean);
               document.title = titles_items.length ? titles_items.join(' - ') : 'Tab2Print';
           },
           verses: function () {
@@ -27,25 +27,6 @@ var vm = new Vue({
           chords: function(){
             return get_chords(this.source_tab);
           }
-      },
-      watch: {
-        chords: function(){
-            if( !this.chords_visible){ return; }
-            
-        // document.getElementsByTagName('body').getElementById("#chords").getElementsByTagName("img")
-            $('body').find('#chords img[src=""]').each(function(key, item){
-                var root = $(item).attr('data-root');
-                var type = $(item).attr('data-type');
-
-                var root = $(item).attr('data-root');
-                $.get('https://www.ukulele-chords.com/get?ak='+API+'&r='+root+'&typ='+type, function(data){
-                    // $(item).attr('src', 'data.')
-
-                    var src = data.match("/<chord_diag>(.+)<\/chord_diag>/")[1];
-                    console.log(src);
-                })
-            })
-        }
       }
   });
 
@@ -68,8 +49,8 @@ var vm = new Vue({
     Source: https://github.com/oliverpool/guitar-tabs_songtex.js/blob/master/guitar-tabs_songtex.js
  */
   function extract_tabs(line) {
-      var reg = /^ *[A-Ga-g](#|b|&)?m?(sus|add|maj|aug|dim)?[0-9]?( *(-|\/) *[A-G](#|b|&)?)?( +[A-Ga-g](#|b|&)?m?(sus|add|maj|aug|dim)?[0-9]?( *(-|\/) *[A-G](#|b|&)?)? *)* *$/,
-          reguniq = /[A-Ga-g](#|b|&)?m?(sus|add|maj|aug|dim)?[0-9]?( *(-|\/) *[A-G](#|b|&)?)? *$/,
+      var reg = /^ *[A-Ga-g][1-9]?(#|b|&)?m?(sus|add|maj|aug|dim)?[0-9]?( *(-|\/) *[A-G][1-9]?(#|b|&)?)?( +[A-Ga-g][1-9]?(#|b|&)?m?(sus|add|maj|aug|dim)?[0-9]?( *(-|\/) *[A-G][1-9]?(#|b|&)?)? *)* *$/,
+          reguniq = /[A-Ga-g][1-9]?(#|b|&)?m?(sus|add|maj|aug|dim)?[0-9]?( *(-|\/) *[A-G][1-9]?(#|b|&)?)? *$/,
           i,
           tab;
 

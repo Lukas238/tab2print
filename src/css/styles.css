@@ -74,14 +74,24 @@ body {
 }
 
 /* CHORDS */
-#chords img {
-    margin-top: 2em;
+#chords .chord {
+    margin-top: 1em;
     height: var(--chord-height);
     min-width: 60px;
     vertical-align: top;
     position: relative;
     display: inline-block;
-    margin-left: .5em;
+    width: 70px;
+    overflow: hidden;
+}
+
+#chords .chord img {
+    height: var(--chord-height);
+    min-width: 60px;
+    vertical-align: top;
+    position: relative;
+    display: inline-block;
+    filter: grayscale(1);
 }
 #chords img:after{
     content: attr(alt);

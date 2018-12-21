@@ -12,9 +12,8 @@
 </head>
 
 <body>
-
     <div id="wrapper">
-
+        <span style="display: none">{{print_title}}</span>
         <div id="editor">
            <div id="meta">
                <fieldset id="tab-meta">
@@ -53,7 +52,7 @@
                 
                 <div id="chords" v-if="chords_visible">
                     <!-- <img :src="'images/chords/' + chord + '.svg'" :alt="chord" v-for="chord in chords" /> -->
-                    <img src="" v-for="chord in chords" :data-root="chord[0]" :data-type="chord[1]" />
+                    <div class="chord" v-for="chord in chords"><img :src="'inc/chord.php?r=' + chord[0] + '&typ=' + chord[1]" /></div>
                 </div>
                 
                 <div id="verses" v-if="verses.length >= 1">
