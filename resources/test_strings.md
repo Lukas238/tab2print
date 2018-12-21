@@ -109,3 +109,5 @@ A A7 Am Am7 Adim Aaug A6 Amaj7 A9
 Bb Bb7 Bbm Bbm7 Bbdim Bbaug Bb6 Bbmaj7 Bb9
 B B7 Bm Bm7 Bdim Baug B6 Bmaj7 B9 
 ```
+
+https://www.guitar-chord.org/chords-by-notes.html

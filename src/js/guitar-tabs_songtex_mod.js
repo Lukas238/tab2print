@@ -51,8 +51,8 @@ var plainTab2tex = (function () {
 
     // extract the tabs of the line into an array where the index is the position of the tab in the line
     function extract_tabs(line) {
-        var reg = /^ *[A-Ga-g](#|b|&)?m?(sus|add|maj)?[0-9]?( *(-|\/) *[A-G](#|b|&)?)?( +[A-Ga-g](#|b|&)?m?(sus|add|maj)?[0-9]?( *(-|\/) *[A-G](#|b|&)?)? *)* *$/,
-            reguniq = /[A-Ga-g](#|b|&)?m?(sus|add|maj)?[0-9]?( *(-|\/) *[A-G](#|b|&)?)? *$/,
+        var reg = /^ *[A-Ga-g](#|b|&|\d)?m?\/?(sus|add|maj)?[0-9]?( *(-|\/) *[A-G](#|b|&)?)?( +[A-Ga-g](#|b|&)?m?(sus|add|maj)?[0-9]?( *(-|\/) *[A-G](#|b|&)?)? *)* *$/,
+            reguniq = /[A-Ga-g](#|b|&)?m?\/?(sus|add|maj)?[0-9]?( *(-|\/) *[A-G](#|b|&)?)? *$/,
             i,
             tab;
 

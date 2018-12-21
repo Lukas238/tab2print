@@ -52,10 +52,11 @@
                 </header>
                 
                 <div id="chords" v-if="chords_visible">
-                    <img :src="'http://ukulelego.com/ukulele-chord-progressions/images/' + chord + '.svg'" v-for="chord in chords" />
+                    <!-- <img :src="'images/chords/' + chord + '.svg'" :alt="chord" v-for="chord in chords" /> -->
+                    <img src="" v-for="chord in chords" :data-root="chord[0]" :data-type="chord[1]" />
                 </div>
                 
-                <div id="verses" v-if="verses.length > 1">
+                <div id="verses" v-if="verses.length >= 1">
                     <div class="verse" :data-verse-index="index+1" v-html="verse" v-for="(verse, index) in verses"></div>
                 </div>
                 
@@ -69,6 +70,7 @@
 
     <!-- SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.15/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/guitar-tabs_songtex_mod.js"></script>
     <script src="js/scripts.js"></script>
 </body>

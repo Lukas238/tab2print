@@ -8,6 +8,7 @@
     --verse-offset: 1em;
     --columns-gap: 2em;
     --meta-height: 120px;
+    --chord-height: 120px;
 }
 body {
     font-family: 'Open Sans', sans-serif;
@@ -30,9 +31,10 @@ body {
     width: 60px;
     display: inline-block;
 }
-#editor .form-group input{
+#editor .form-group input[type="text"]{
     width: calc( 100% - 120px);
 }
+
 #editor #edit_area {
     width: 100%;
     height: calc(100% - var(--meta-height) - 5px);
@@ -53,7 +55,7 @@ body {
     /* A4 sheet preview */
     #preview #paper{
         width: 21cm;
-        min-height: 29.7cm;
+        min-height: 97vh;
         padding: 2cm;
         margin: 0 auto 1em auto;
         box-shadow: 0 0 3px rgba(0,0,0, .4);
@@ -74,11 +76,26 @@ body {
 /* CHORDS */
 #chords img {
     margin-top: 2em;
-    height: 120px;
+    height: var(--chord-height);
+    min-width: 60px;
     vertical-align: top;
-}
-#chords img+img {
+    position: relative;
+    display: inline-block;
     margin-left: .5em;
+}
+#chords img:after{
+    content: attr(alt);
+    white-space: pre;
+    position: absolute;
+    background: #fff;
+    text-transform: capitalize;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    font-weight: bold;
+    font-size: .9em;
+    left: 0;
+    top: 0;
 }
 
 /* VERSES */
