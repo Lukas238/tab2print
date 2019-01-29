@@ -1,7 +1,3 @@
-// var API = "86a9106ae65537651a8e456835b316ab"; // localhost
-var API = "448c94b888630081dd55bfa9fe3b797f";
-
-
 var vm = new Vue({
       el: '#wrapper',
       data: {
@@ -49,8 +45,8 @@ var vm = new Vue({
     Source: https://github.com/oliverpool/guitar-tabs_songtex.js/blob/master/guitar-tabs_songtex.js
  */
   function extract_tabs(line) {
-      var reg = /^ *[A-Ga-g][1-9]?(#|b|&)?m?(sus|add|maj|aug|dim)?[0-9]?( *(-|\/) *[A-G][1-9]?(#|b|&)?)?( +[A-Ga-g][1-9]?(#|b|&)?m?(sus|add|maj|aug|dim)?[0-9]?( *(-|\/) *[A-G][1-9]?(#|b|&)?)? *)* *$/,
-          reguniq = /[A-Ga-g][1-9]?(#|b|&)?m?(sus|add|maj|aug|dim)?[0-9]?( *(-|\/) *[A-G][1-9]?(#|b|&)?)? *$/,
+     var reg = /^ *[A-Ga-g]\w?\d?(#|b|&)?m?(major|sus|aug|add|dim|maj)?[0-9]?\w?\d?( *(-|\/) *[A-G]\w?\d?(#|b)?)?( +[A-Ga-g]\w?\d?(#|b|&)?m?(major|sus|aug|add|dim|maj)?[0-9]?\w?\d?( *(-|\/) *[A-G]\d?(#|b|&)?)? *)* *$/,
+      reguniq = /[A-Ga-g]\w?\d?(#|b|&)?m?(major|sus|aug|add|dim|maj)?[0-9]?\w?\d?( *(-|\/) *[A-G]\d?(#|b|&)?)? *$/,
           i,
           tab;
 
