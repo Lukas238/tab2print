@@ -18,10 +18,16 @@ var vm = new Vue({
             
               var output = plainTab2tex.parse(clean_input(this.source_tab).split(/\r\n|\r|\n/g)).join('</br>').split('</br></br>');
             //   return console.log(output) || output;
+            hihglight_chord_line
               return  output;
           },
           chords: function(){
             return get_chords(this.source_tab);
+          }
+      },
+      watch:{
+          verses: function(){
+            hihglight_chord_line();
           }
       }
   });
@@ -70,7 +76,10 @@ var vm = new Vue({
 
   function clean_input(str) {
       str = str.replace(/''/g, '"');
-      str = str.replace('<br/>', '\n')
+      str = str.replace('<br/>', '\n');
+      str = str.replace('Source: www.ukulele-tabs.com', '');
+      str = str.trim();
+
       return str;
   }
 
@@ -86,3 +95,9 @@ var vm = new Vue({
     }
     return cur_line;
 }
+
+
+function hihglight_chord_line(){
+    $('#verses .chord + .chord').first().prev().addClass('-alone');
+    console.log('hi');
+};
