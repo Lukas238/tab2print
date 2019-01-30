@@ -2,9 +2,9 @@ var vm = new Vue({
       el: '#wrapper',
       data: {
           source_tab: '',
-          title: 'Song title',
-          album: 'Album title',
-          author: 'Author name',
+          title: '',
+          album: '',
+          author: '',
           chords_visible: true
       },
       computed: {
@@ -36,8 +36,19 @@ var vm = new Vue({
     chords = chords.filter(Boolean);
 
     // Split the chord in Root Chord note and Chord Type (ex.: Dm7 = [D, m7]), 
-    chords = chords.map( chord => [chord.substring(0,1), chord.substring(1)] );
+    chords = chords.map(function(chord){
+        var list = chord.split(/[-\/\|]+/); // This match dual chords like "D/A#" 
 
+        return list.map(function(str){
+            var match = reg_chord.exec(str);
+            // reg_chord.lastIndex = 0;
+            // console.log(chord, match); 
+            return [match[1], match[2]];
+        });
+    });
+
+    chords = chords.flat();
+    chords = chords.reduce((r, v) => (r[v] = v, r), {}); //Remove duplicated subarrays
     return chords;
   }
 
@@ -45,9 +56,7 @@ var vm = new Vue({
     Source: https://github.com/oliverpool/guitar-tabs_songtex.js/blob/master/guitar-tabs_songtex.js
  */
   function extract_tabs(line) {
-     var reg = /^ *[A-Ga-g]\w?\d?(#|b|&)?m?(major|sus|aug|add|dim|maj)?[0-9]?\w?\d?( *(-|\/) *[A-G]\w?\d?(#|b)?)?( +[A-Ga-g]\w?\d?(#|b|&)?m?(major|sus|aug|add|dim|maj)?[0-9]?\w?\d?( *(-|\/) *[A-G]\d?(#|b|&)?)? *)* *$/,
-      reguniq = /[A-Ga-g]\w?\d?(#|b|&)?m?(major|sus|aug|add|dim|maj)?[0-9]?\w?\d?( *(-|\/) *[A-G]\d?(#|b|&)?)? *$/,
-          i,
+     var i,
           tab;
 
       if (line.match(reg)) {
