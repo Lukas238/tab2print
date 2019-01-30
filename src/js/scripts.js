@@ -18,7 +18,6 @@ var vm = new Vue({
             
               var output = plainTab2tex.parse(clean_input(this.source_tab).split(/\r\n|\r|\n/g)).join('</br>').split('</br></br>');
             //   return console.log(output) || output;
-            hihglight_chord_line
               return  output;
           },
           chords: function(){
@@ -27,7 +26,7 @@ var vm = new Vue({
       },
       watch:{
           verses: function(){
-            hihglight_chord_line();
+            // hihglight_chord_line();
           }
       }
   });
@@ -99,5 +98,4 @@ var vm = new Vue({
 
 function hihglight_chord_line(){
     $('#verses .chord + .chord').first().prev().addClass('-alone');
-    console.log('hi');
 };

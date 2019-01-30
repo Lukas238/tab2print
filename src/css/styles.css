@@ -89,8 +89,8 @@ body {
     overflow: hidden;
 }
 
-#verses .chord.-alone,
-#verses .chord + .chord{
+/* #verses .chord.-alone, */
+/* #verses .chord + .chord{
     position: relative;
     width: auto;
     display: inline-block;
@@ -98,12 +98,12 @@ body {
     color: inherit;
     font-style: inherit;
     margin-right: .5em;
-}
+} */
 
-#verses .chord.-alone span,
+/* #verses .chord.-alone span,
 #verses .chord + .chord span{
     position: unset;
-}
+} */
 
 #chords .chord img,
 #chords .chord img:before {
