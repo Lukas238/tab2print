@@ -17,9 +17,14 @@ A    A11    A13    A5    A6    A7    A7sus2    A7sus4    A9    Aadd9    Aaug    
 ```
 
 
+## Test URLs
 
-
-var str = "AmMaj7";
-var reg = /([A-G]b?)((?:#|&)?m?\d?(?:ajor|aug|dim|aj|sus|add|Maj)?\d{0,2}b?\d?)/gi;
-var chord_parts = str.match(reg);
-console.log( chord_parts[1], chord_parts[2]);
+- https://www.ukulele-tabs.com/uke-songs/mumford-and-sons/the-cave-uke-tab-17047.html
+- https://www.ukulele-tabs.com/uke-songs/queen/bohemian-rhapsody-uke-tab-54709.html
+- https://www.ukulele-tabs.com/uke-songs/israel-kamakawiwoole/somewhere-over-the-rainbowwhat-a-wonderful-world-uke-tab-12260.html
+- https://www.ukulele-tabs.com/es/tablaturas/thin-lizzy/whiskey-in-the-jar-uke-tab-12187.html
+- https://www.ukulele-tabs.com/es/tablaturas/jorge-drexler/sea-uke-tab-37544.html
+- https://www.ukulele-tabs.com/es/tablaturas/folk-songs/you-are-my-sunshine-uke-tab-15237.html
+- https://www.ukulele-tabs.com/uke-songs/mumford-and-sons/the-cave-super-easy-uke-tab-23983.html
+- https://www.ukulele-tabs.com/uke-songs/sting/i-hung-my-head-uke-tab-4506.html
+- https://www.ukulele-tabs.com/uke-songs/magdalena-fleitas/la-luna-de-candela-uke-tab-58328.html
