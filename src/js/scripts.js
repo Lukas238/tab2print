@@ -86,9 +86,16 @@ function get_chords(str) {
         var list = chord.split(/[-\/\|]+/); // This match dual chords like "D/A#" 
 
         return list.map(function (str) {
+            
+            // Replace alternate chord writing
+            str = str
+                    .replace(/A#/i, 'Bb')
+                    .replace(/C#/i, 'Db')
+                    .replace(/D#/i, 'Eb')
+                    .replace(/F#/i, 'Gb')
+                    .replace(/G#/i, 'Ab');
+
             var match = reg_chord.exec(str);
-            // reg_chord.lastIndex = 0;
-            // console.log(chord, match); 
             return [match[1], match[2]];
         });
     });

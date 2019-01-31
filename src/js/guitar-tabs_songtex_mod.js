@@ -43,7 +43,15 @@ var plainTab2tex = (function () {
             j -= 1;
             if (cur_tabs[j] !== undefined) {
                 l = Math.min(j, l);//if the tabs are after the end of the text line, we insert them at the end
-                cur_line = cur_line.substr(0, l) + "</span><span class='chord'><span>" + cur_tabs[j] + "</span></span><span class='text'>" + cur_line.substr(l);
+
+                var chord = cur_tabs[j]
+                    .replace(/A#/i, 'Bb')
+                    .replace(/C#/i, 'Db')
+                    .replace(/D#/i, 'Eb')
+                    .replace(/F#/i, 'Gb')
+                    .replace(/G#/i, 'Ab') ;
+
+                cur_line = cur_line.substr(0, l) + "</span><span class='chord'><span>" + chord + "</span></span><span class='text'>" + cur_line.substr(l);
             }
         }
         cur_line = "<span class='text'>"+ cur_line + "</span>"
