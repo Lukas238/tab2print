@@ -2,6 +2,9 @@ var vm = new Vue({
     el: '#wrapper',
     data: {
         source_tab: `
+C G AM
+
+
 C                    Am                         
 As I was goin' over the far famed Kerry mountains
     F                                C            Am     
@@ -11,6 +14,7 @@ I first produced my pistol and then produced my rapier
         F                         C                 Am     
 I said stand and deliver or the devil he may take ya
 
+
         G7               
 Musha ring dum a do dum a dah
 C            C7      
@@ -19,6 +23,7 @@ F
 Whack for my daddy-o
         C       G7     C   
 There's whiskey in the jar-o
+        
 `,
         title: '',
         album: '',
@@ -48,6 +53,7 @@ There's whiskey in the jar-o
 
             var output = plainTab2tex.parse(clean_input(this.source_tab).split(/\r\n|\r|\n/g))
             output = ('<div class="line">'+ output.join('</div><div class="line">') + '</div>').split('<div class="line"></div>');
+            output = output.filter(Boolean);
             console.log(output);
             return output;
         },
