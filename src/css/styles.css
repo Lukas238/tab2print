@@ -186,6 +186,7 @@ body {
     color: #666;
     font-size: .8em;
     display: inline;
+    text-transform: capitalize;
 }
 
 #verses .chord span {

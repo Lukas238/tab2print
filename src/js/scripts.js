@@ -73,7 +73,7 @@ function get_chords(str) {
                     .replace(/G#/i, 'Ab');
 
             var match = reg_chord.exec(str);
-            return [match[1], match[2]];
+            return [match[1].toUpperCase(), match[2]];
         });
     });
 

@@ -49,7 +49,7 @@ var plainTab2tex = (function () {
                     .replace(/C#/i, 'Db')
                     .replace(/D#/i, 'Eb')
                     .replace(/F#/i, 'Gb')
-                    .replace(/G#/i, 'Ab') ;
+                    .replace(/G#/i, 'Ab');
 
                 cur_line = cur_line.substr(0, l) + "</span><span class='chord'><span>" + chord + "</span></span><span class='text'>" + cur_line.substr(l);
             }
@@ -95,7 +95,8 @@ var plainTab2tex = (function () {
             } else {
                 // else we just move on
                 parsed_lines.unshift(cur_line);
-                cur_line = clean_string(raw_lines[i]);
+                // cur_line = clean_string(raw_lines[i]);
+                cur_line = raw_lines[i];
             }
             if (i === 0) {
                 // for the last iteration
