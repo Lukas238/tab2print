@@ -126,6 +126,7 @@ body {
     font-weight: bold;
     color: #424242;
     z-index: 100;
+    font-style: italic;
 }
 
 #chords img:before{
@@ -166,11 +167,13 @@ body {
 #verses .verse:before {
     position: absolute;
     content: attr(data-verse-index) ".";
+    width: 2em;
     top: 0;
-    left: 0;
+    left: -1em;
     color: #888;
     font-size: .8em;
     font-style: italic;
+    text-align: right;
 }
 
 #verses p{
