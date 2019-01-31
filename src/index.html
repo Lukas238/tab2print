@@ -58,7 +58,7 @@
                 </div>
                 
                 <div id="verses" v-if="verses.length >= 1">
-                    <div class="verse" :data-verse-index="index+1" v-html="verse" v-for="(verse, index) in verses"></div>
+                    <p class="verse" :data-verse-index="index+1" v-html="verse" v-for="(verse, index) in verses"></p>
                 </div>
                 
             </div><!-- /#paper -->

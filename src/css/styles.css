@@ -89,8 +89,7 @@ body {
     overflow: hidden;
 }
 
-/* #verses .chord.-alone, */
-/* #verses .chord + .chord{
+#verses .chord.-inSingleLine{
     position: relative;
     width: auto;
     display: inline-block;
@@ -98,12 +97,11 @@ body {
     color: inherit;
     font-style: inherit;
     margin-right: .5em;
-} */
+}
 
-/* #verses .chord.-alone span,
-#verses .chord + .chord span{
+#verses .chord.-inSingleLine span{
     position: unset;
-} */
+}
 
 #chords .chord img,
 #chords .chord img:before {
@@ -173,6 +171,10 @@ body {
     color: #888;
     font-size: .8em;
     font-style: italic;
+}
+
+#verses p{
+    margin: 0;
 }
 
 #verses .chord {

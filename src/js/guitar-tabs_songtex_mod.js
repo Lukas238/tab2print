@@ -43,10 +43,11 @@ var plainTab2tex = (function () {
             j -= 1;
             if (cur_tabs[j] !== undefined) {
                 l = Math.min(j, l);//if the tabs are after the end of the text line, we insert them at the end
-                cur_line = cur_line.substr(0, l) + "<span class='chord'><span>" + cur_tabs[j] + "</span></span>" + cur_line.substr(l);
+                cur_line = cur_line.substr(0, l) + "</span><span class='chord'><span>" + cur_tabs[j] + "</span></span><span class='text'>" + cur_line.substr(l);
             }
         }
-        return cur_line;
+        cur_line = "<span class='text'>"+ cur_line + "</span>"
+        return cur_line.replace(/<span class='text'><\/span>/gi, "");
     }
 
     // extract the tabs of the line into an array where the index is the position of the tab in the line
