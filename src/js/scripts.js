@@ -54,7 +54,7 @@ There's whiskey in the jar-o
             var output = plainTab2tex.parse(clean_input(this.source_tab).split(/\r\n|\r|\n/g))
             output = ('<div class="line">'+ output.join('</div><div class="line">') + '</div>').split('<div class="line"></div>');
             output = output.filter(Boolean);
-            console.log(output);
+            // console.log(output);
             return output;
         },
         chords: function () {
