@@ -1,30 +1,7 @@
 var vm = new Vue({
     el: '#wrapper',
     data: {
-        source_tab: `
-C G AM
-
-
-C                    Am                         
-As I was goin' over the far famed Kerry mountains
-    F                                C            Am     
-I saw with Captain Farrell and his money he was countin # 17
-    C                             Am                     
-I first produced my pistol and then produced my rapier
-        F                         C                 Am     
-I said stand and deliver or the devil he may take ya
-
-
-        G7               
-Musha ring dum a do dum a dah
-C            C7      
-Whack for my daddy-o
-F                    
-Whack for my daddy-o
-        C       G7     C   
-There's whiskey in the jar-o
-        
-`,
+        source_tab: ``,
         title: '',
         album: '',
         author: '',
