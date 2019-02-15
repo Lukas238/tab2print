@@ -102,7 +102,8 @@ function clean_input(str) {
     str = str.replace(/''/g, '"');
     str = str.replace('<br/>', '\n');
     str = str.replace('Source: www.ukulele-tabs.com', '');
-    str = str.trim();
+    str = str.replace(/¿ No sabe cómo leer una tablatura o un acorde \?\s*curso de ukulele/gm, '');
+    // str = str.trim();
 
     return str;
 }

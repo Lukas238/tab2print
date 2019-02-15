@@ -180,6 +180,11 @@ body {
     margin: 0;
 }
 
+#verses .verse .line{
+    white-space: pre-wrap;
+}
+
+
 #verses .chord {
     position: absolute;
     font-style: italic;
