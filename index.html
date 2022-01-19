@@ -1,1 +1,72 @@
-<meta http-equiv="refresh" content="0; url="src" />
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tab2Print</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Ubuntu+Mono" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <span style="display: none">{{print_title}}</span>
+        <div id="editor">
+           <div id="meta">
+               <fieldset id="tab-meta">
+                   <div class="form-group">
+                       <!-- <label for="frm_title">Title</label> -->
+                       <input id="frm_title" type="text" v-model="title" placeholder="Title">
+                    </div>
+                    <div class="form-group">
+                        <!-- <label for="frm_album">Album</label> -->
+                        <input id="frm_album" type="text" v-model="album"placeholder="Album">
+                    </div>
+                    <div class="form-group">
+                        <!-- <label for="frm_author">Author</label> -->
+                        <input id="frm_author" type="text" v-model="author"placeholder="Author">
+                    </div>
+                </fieldset>
+            </div>
+
+            <textarea id="edit_area" cols="30" rows="10" v-model="source_tab" placeholder="Copy and paste the tab text here"></textarea>
+        </div>
+
+
+        <div id="preview">
+            <div id="paper">
+
+                <header v-if="title || author">
+                    <h1 class="title">{{title}}</h1>
+                    <h2 class="author" v-if="author || album">{{ author }}<span v-if="author && album"> - </span>{{ album }}</h2>
+                </header>
+
+                <div id="chords" v-if="chords_visible">
+                    <div class="chord" v-for="chord in chords">
+                        <img :src="'images/chords/' + chord[0] + chord[1] + '.png'" :alt="chord[0] + chord[1]" />
+                    </div>
+                </div>
+
+                <div id="verses" v-if="verses.length >= 1">
+                    <p class="verse" :data-verse-index="index+1" v-html="verse" v-for="(verse, index) in verses"></p>
+                </div>
+
+            </div><!-- /#paper -->
+        </div>
+        <!-- /#preview -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.15/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/guitar-tabs_songtex_mod.js"></script>
+    <script src="js/scripts.js"></script>
+</body>
+</html>
