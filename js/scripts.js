@@ -58,12 +58,12 @@ function get_chords(str) {
     chords = [...new Set(chords)];
     chords = chords.filter(Boolean);
 
-    // Split the chord in Root Chord note and Chord Type (ex.: Dm7 = [D, m7]), 
+    // Split the chord in Root Chord note and Chord Type (ex.: Dm7 = [D, m7]),
     chords = chords.map(function (chord) {
-        var list = chord.split(/[-\/\|]+/); // This match dual chords like "D/A#" 
+        var list = chord.split(/[-\/\|]+/); // This match dual chords like "D/A#"
 
         return list.map(function (str) {
-            
+
             // Replace alternate chord writing
             str = str
                     .replace(/A#/i, 'Bb')
@@ -73,7 +73,7 @@ function get_chords(str) {
                     .replace(/G#/i, 'Ab');
 
             var match = reg_chord.exec(str);
-            return [match[1].toUpperCase(), match[2]];
+            return [match[1].toLowerCase(), match[2]];
         });
     });
 
