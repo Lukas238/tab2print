@@ -53,7 +53,7 @@ body {
     float: right;
     height: 100vh;
     padding: 1rem;
-    
+
 }
 @media screen{
     /* A4 sheet preview */
@@ -114,7 +114,7 @@ body {
 }
 
 #chords .chord img:after {
-    content: attr(alt);
+    content: attr(data-chord);
     position: absolute;
     top: 5px;
     left: 0;

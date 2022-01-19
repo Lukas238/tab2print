@@ -46,7 +46,7 @@
 
                 <div id="chords" v-if="chords_visible">
                     <div class="chord" v-for="chord in chords">
-                        <img :src="'images/chords/' + chord[0] + chord[1] + '.png'" :alt="chord[0] + chord[1]" />
+                        <img :src="'images/chords/' + chord[0] + chord[1] + '.png'" alt=" " :data-chord="chord[0] + chord[1]" />
                     </div>
                 </div>
 
