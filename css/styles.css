@@ -38,7 +38,10 @@ body {
     width: 100%;
 }
 
-#editor #edit_area {
+#editor #edit_area{
+  display: none;
+}
+#monacoeditor {
     height: calc(100% - 90px);
     width: 100%;
     white-space: pre;
@@ -46,6 +49,8 @@ body {
     font-family: monospace;
     resize: vertical;
 }
+
+
 
 /* PREVIEW */
 #preview {
